@@ -12,14 +12,5 @@ public class CreateUsersReqBody {
     private String gender;
     private String email;
     private String status;
-    public String getName() {
-        return name;
-    }
 
-    public CreateUsersReqBody(String name, String gender, String email, String status) {
-        this.name = name;
-        this.gender = gender;
-        this.email = email;
-        this.status = status;
-    }
 }

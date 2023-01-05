@@ -1,18 +1,14 @@
-import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import users.UserClient;
 import users.create.CreateUsersReqBody;
+import users.create.response.CreateUserResponse;
 
 import java.util.UUID;
 
-import static io.restassured.RestAssured.given;
+import static org.testng.Assert.*;
 
 public class CreateUserTest {
-
-
     private UserClient userClient;
 
     @BeforeClass
@@ -28,14 +24,14 @@ public class CreateUserTest {
                 .gender("female").email(email)
                 .status("active").build();
         //act
-        userClient.createUsers(cuReqBody)
-                .then().log().body()
-                //assert
-                .statusCode(201)
-                .body("data.id", Matchers.notNullValue())
-                .body("data.name",Matchers.equalToIgnoringCase("Rani Ramakrishna"))
-                .body("data.gender",Matchers.equalToIgnoringCase("female"))
-                .body("data.email",Matchers.equalToIgnoringCase(email));
+        CreateUserResponse createUserResponse = userClient.createUsers(cuReqBody);
+        //assert
+        //⌥⏎ to static import
+        assertEquals(createUserResponse.getStatusCode(),201);
+        assertNotNull(createUserResponse.getData().getId());
+        assertEquals(createUserResponse.getData().getName(),cuReqBody.getName());
+        assertEquals(createUserResponse.getData().getEmail(),cuReqBody.getEmail());
+        assertEquals(createUserResponse.getData().getGender(),cuReqBody.getGender());
     }
 
     @Test
@@ -47,14 +43,13 @@ public class CreateUserTest {
                 .gender("male").email(email)
                 .status("active").build();
         //act
-        userClient.createUsers(cuReqBody)
-                .then().log().body()
-
-                //assert
-                .statusCode(201)
-                .body("data.id", Matchers.notNullValue())
-                .body("data.name",Matchers.equalToIgnoringCase("Rup Ramakrishna"))
-                .body("data.gender",Matchers.equalToIgnoringCase("male"))
-                .body("data.email",Matchers.equalToIgnoringCase(email));
+        CreateUserResponse createUserResponse = userClient.createUsers(cuReqBody);
+        //assert
+        //⌥⏎ to static import
+        assertEquals(createUserResponse.getStatusCode(),201);
+        assertNotNull(createUserResponse.getData().getId());
+        assertEquals(createUserResponse.getData().getName(),cuReqBody.getName());
+        assertEquals(createUserResponse.getData().getEmail(),cuReqBody.getEmail());
+        assertEquals(createUserResponse.getData().getGender(),cuReqBody.getGender());
     }
 }

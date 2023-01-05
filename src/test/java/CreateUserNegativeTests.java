@@ -22,13 +22,12 @@ public class CreateUserNegativeTests {
                 .gender("male").email("rup.ramakrishnaabcd112333.com")
                 .status("active").build();
         //act
-        userClient.createUsers(cuReqBody)
-                .then().log().body()
-
+        userClient.create(cuReqBody)
                 //assert
-                .statusCode(422)
-                .body("data", Matchers.hasItem(Matchers.hasEntry("field","email")))
-                .body("data", Matchers.hasItem(Matchers.hasEntry("message","is invalid")));
+                .then()
+                    .statusCode(422)
+                    .body("data", Matchers.hasItem(Matchers.hasEntry("field","email")))
+                    .body("data", Matchers.hasItem(Matchers.hasEntry("message","is invalid")));
     }
 
 }
