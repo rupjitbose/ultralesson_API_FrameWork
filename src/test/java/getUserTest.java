@@ -1,14 +1,11 @@
-import io.restassured.response.Response;
-import org.hamcrest.Matchers;
+import org.testng.Assert;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import users.UserClient;
-
-import static io.restassured.RestAssured.given;
+import users.create.response.GetAllUserResponse;
+import static org.testng.Assert.*;
 
 public class getUserTest {
-
-
     private UserClient userClient;
 
     @BeforeClass
@@ -19,15 +16,16 @@ public class getUserTest {
     public void shouldReturnAllUsers(){
 
         //act
-        userClient.getAllUsers()
-                    .then()
+        GetAllUserResponse allUsers = userClient.getAllUsers();
+
         //assert
-                        .statusCode(200)
-                        .body("data",Matchers.hasSize(10))
-                        .body("data",Matchers.hasItem(Matchers.hasEntry("gender","male")))
-                        .body("meta.pagination.limit",Matchers.equalTo(10))
-                        .log().body();
-        }
+        assertEquals(allUsers.getStatusCode(),200);
+        assertEquals(allUsers.getDataList().size(),10);
+        assertTrue(allUsers.getDataList().stream().filter(data -> data.getGender().equals("male")).findAny().isPresent());
+        assertEquals(allUsers.getMeta().getPagination().getLimit(),10);
+
+
+    }
 
 
 

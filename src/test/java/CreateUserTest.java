@@ -6,7 +6,7 @@ import users.create.response.CreateUserResponse;
 
 import java.util.UUID;
 
-import static org.testng.Assert.*;
+
 
 public class CreateUserTest {
     private UserClient userClient;
