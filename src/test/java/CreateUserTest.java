@@ -27,11 +27,7 @@ public class CreateUserTest {
         CreateUserResponse createUserResponse = userClient.createUsers(cuReqBody);
         //assert
         //⌥⏎ to static import
-        assertEquals(createUserResponse.getStatusCode(),201);
-        assertNotNull(createUserResponse.getData().getId());
-        assertEquals(createUserResponse.getData().getName(),cuReqBody.getName());
-        assertEquals(createUserResponse.getData().getEmail(),cuReqBody.getEmail());
-        assertEquals(createUserResponse.getData().getGender(),cuReqBody.getGender());
+        createUserResponse.assertUserInfo(cuReqBody);
     }
 
     @Test
@@ -45,10 +41,8 @@ public class CreateUserTest {
         CreateUserResponse createUserResponse = userClient.createUsers(cuReqBody);
         //assert
         //⌥⏎ to static import
-        assertEquals(createUserResponse.getStatusCode(),201);
-        assertNotNull(createUserResponse.getData().getId());
-        assertEquals(createUserResponse.getData().getName(),cuReqBody.getName());
-        assertEquals(createUserResponse.getData().getEmail(),cuReqBody.getEmail());
-        assertEquals(createUserResponse.getData().getGender(),cuReqBody.getGender());
+
+        createUserResponse.assertUserInfo(cuReqBody);
+
     }
 }

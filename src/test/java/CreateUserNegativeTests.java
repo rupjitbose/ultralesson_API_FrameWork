@@ -29,7 +29,6 @@ public class CreateUserNegativeTests {
                 //assert
                 Assert.assertEquals(errorResponse.getStatusCode(),422);
                 errorResponse.assertHasError("email","is invalid");
-
     }
 
     @Test
