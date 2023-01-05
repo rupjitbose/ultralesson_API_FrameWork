@@ -7,7 +7,6 @@ import lombok.Setter;
 @Setter
 @Builder
 public class CreateUsersReqBody {
-
     private String name;
     private String gender;
     private String email;
