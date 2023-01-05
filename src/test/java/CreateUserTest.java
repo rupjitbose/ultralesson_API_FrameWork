@@ -23,32 +23,29 @@ public class CreateUserTest {
     @Test
     public void shouldCreateFemaleUser(){
 //arrange
-        String email = UUID.randomUUID()+"@gmail.com";
-        String name = "Rani Ramakrishna";
-        String gender = "female";
-        String status = "active";
-
-       CreateUsersReqBody cuReqBody= new CreateUsersReqBody(name,gender,email,status);
+        String email = UUID.randomUUID() + "@gmail.com";
+        CreateUsersReqBody cuReqBody=CreateUsersReqBody.builder().name("Rani Ramakrishna")
+                .gender("female").email(email)
+                .status("active").build();
         //act
         userClient.createUsers(cuReqBody)
                 .then().log().body()
                 //assert
                 .statusCode(201)
                 .body("data.id", Matchers.notNullValue())
-                .body("data.name",Matchers.equalToIgnoringCase(name))
-                .body("data.gender",Matchers.equalToIgnoringCase(gender))
+                .body("data.name",Matchers.equalToIgnoringCase("Rani Ramakrishna"))
+                .body("data.gender",Matchers.equalToIgnoringCase("female"))
                 .body("data.email",Matchers.equalToIgnoringCase(email));
     }
 
     @Test
     public void shouldCreateMaleUser(){
 //arrange
-        String email = UUID.randomUUID()+"@gmail.com";
-        String name = "Rup Ramakrishna";
-        String gender = "male";
-        String status = "active";
 
-        CreateUsersReqBody cuReqBody= new CreateUsersReqBody(name,gender,email,status);
+        String email = UUID.randomUUID() + "@gmail.com";
+        CreateUsersReqBody cuReqBody=CreateUsersReqBody.builder().name("Rup Ramakrishna")
+                .gender("male").email(email)
+                .status("active").build();
         //act
         userClient.createUsers(cuReqBody)
                 .then().log().body()
@@ -56,8 +53,8 @@ public class CreateUserTest {
                 //assert
                 .statusCode(201)
                 .body("data.id", Matchers.notNullValue())
-                .body("data.name",Matchers.equalToIgnoringCase(name))
-                .body("data.gender",Matchers.equalToIgnoringCase(gender))
+                .body("data.name",Matchers.equalToIgnoringCase("Rup Ramakrishna"))
+                .body("data.gender",Matchers.equalToIgnoringCase("male"))
                 .body("data.email",Matchers.equalToIgnoringCase(email));
     }
 }
