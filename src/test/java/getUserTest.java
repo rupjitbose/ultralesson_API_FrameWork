@@ -17,13 +17,17 @@ public class getUserTest {
     }
     @Test
     public void shouldReturnAllUsers(){
+
+        //act
         userClient.getAllUsers()
-                .then().statusCode(200)
-                .body("data",Matchers.hasSize(10))
-                .body("data",Matchers.hasItem(Matchers.hasEntry("gender","male")))
-                .body("meta.pagination.limit",Matchers.equalTo(10))
-                .log().body();
-    }
+                    .then()
+        //assert
+                        .statusCode(200)
+                        .body("data",Matchers.hasSize(10))
+                        .body("data",Matchers.hasItem(Matchers.hasEntry("gender","male")))
+                        .body("meta.pagination.limit",Matchers.equalTo(10))
+                        .log().body();
+        }
 
 
 

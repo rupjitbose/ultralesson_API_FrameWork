@@ -3,6 +3,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import users.UserClient;
+import users.create.CreateUsersReqBody;
 
 public class CreateUserNegativeTests {
 
@@ -16,15 +17,14 @@ public class CreateUserNegativeTests {
     @Test
     public void shouldNotAllowToCreateUserWithInvalidEmail(){
         //arrange
-        String body = "{\n" +
-                "    \"name\": \"Rup Ramakrishna\",\n" +
-                "    \"gender\": \"male\",\n" +
-                "    \"email\": \"rup.ramakrishnaabcd112333.com\",\n" +
-                "    \"status\": \"active\"\n" +
-                "}";
+        String name = "Rup Ramakrishna";
+        String gender = "male";
+        String email = "rup.ramakrishnaabcd112333.com";
+        String status = "active";
 
+        CreateUsersReqBody cuReqBody= new CreateUsersReqBody(name,gender,email,status);
         //act
-        userClient.createUsers(body)
+        userClient.createUsers(cuReqBody)
                 .then().log().body()
 
                 //assert
