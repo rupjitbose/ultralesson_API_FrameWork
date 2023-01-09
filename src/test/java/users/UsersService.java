@@ -5,6 +5,7 @@ import users.create.CreateUsersReqBody;
 import users.create.response.CreateUserErrorResponse;
 import users.create.response.GetAllUserResponse;
 import users.create.response.ResponseOfCreateUser;
+import users.get.GetUserErrorResponse;
 import users.get.GetUserResponse;
 
 public class UsersService {
@@ -40,6 +41,22 @@ public class UsersService {
         GetUserResponse  getUserResponse=response.as(GetUserResponse.class);
         getUserResponse.setStatusCode(statusCode);
         return getUserResponse;
+    }
+
+    public int deleteUser(int id){
+        Response response = new UserClient().delete(id);
+        return response.statusCode();
+    }
+
+    public GetUserErrorResponse getUserExpectingErrorResponse(int id){
+        Response response = new UserClient().get(id);
+
+        int statusCode=response.statusCode();
+
+        GetUserErrorResponse  getUserErrorResponse=response.as(GetUserErrorResponse.class);
+        getUserErrorResponse.setStatusCode(statusCode);
+        return getUserErrorResponse;
+
     }
 
 
