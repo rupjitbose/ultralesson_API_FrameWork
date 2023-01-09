@@ -1,6 +1,7 @@
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import users.UserClient;
+import users.UsersService;
 import users.create.CreateUsersReqBody;
 import users.create.response.ResponseOfCreateUser;
 import java.util.UUID;
@@ -8,11 +9,11 @@ import java.util.UUID;
 
 
 public class CreateUserTest {
-    private UserClient userClient;
+    private UsersService usersService;
 
     @BeforeClass
     public void beforeTest(){
-        userClient=new UserClient();
+        usersService=new UsersService();
     }
 
     @Test
@@ -27,7 +28,7 @@ public class CreateUserTest {
         //arrange
         CreateUsersReqBody cuReqBody = new CreateUsersReqBody.Builder().gender("female").build();
         //act
-        ResponseOfCreateUser createUserResponse = userClient.createUsers(cuReqBody);
+        ResponseOfCreateUser createUserResponse = usersService.createUsers(cuReqBody);
         //assert
         createUserResponse.assertUserInfo(cuReqBody);
     }
@@ -37,7 +38,7 @@ public class CreateUserTest {
         //arrange
         CreateUsersReqBody cuReqBody = new CreateUsersReqBody.Builder().gender("male").build();
         //act
-        ResponseOfCreateUser createUserResponse = userClient.createUsers(cuReqBody);
+        ResponseOfCreateUser createUserResponse = usersService.createUsers(cuReqBody);
         //assert
         createUserResponse.assertUserInfo(cuReqBody);
     }

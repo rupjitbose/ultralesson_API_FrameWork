@@ -1,21 +1,22 @@
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import users.UserClient;
+import users.UsersService;
 import users.create.response.GetAllUserResponse;
 import static org.testng.Assert.*;
 
 public class getUserTest {
-    private UserClient userClient;
+    private UsersService usersService;
 
     @BeforeClass
     public void beforeTest(){
-        userClient=new UserClient();
+        usersService=new UsersService();
     }
     @Test
     public void shouldReturnAllUsers(){
 
         //act
-        GetAllUserResponse allUsers = userClient.getAllUsers();
+        GetAllUserResponse allUsers = usersService.getAllUsers();
 
         //assert
         assertEquals(allUsers.getStatusCode(),200);
