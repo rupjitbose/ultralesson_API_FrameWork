@@ -28,7 +28,6 @@ public class CreateUserErrorResponse {
 
     @Getter
    public static class  Data{
-
        private String field;
        private String message;
 

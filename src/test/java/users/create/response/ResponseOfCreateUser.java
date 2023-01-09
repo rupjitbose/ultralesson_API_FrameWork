@@ -8,7 +8,7 @@ import static org.testng.Assert.assertEquals;
 import static org.testng.Assert.assertNotNull;
 
 @Getter
-public class CreateUserResponse {
+public class ResponseOfCreateUser {
 
     @Setter
     private int statusCode;
