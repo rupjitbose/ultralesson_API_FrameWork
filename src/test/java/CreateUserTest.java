@@ -17,31 +17,28 @@ public class CreateUserTest {
 
     @Test
     public void shouldCreateFemaleUser(){
+
+//        String email = UUID.randomUUID() + "@gmail.com";
+//        CreateUsersReqBody cuReqBody=CreateUsersReqBody.builder()
+//                .name("Rani Ramakrishna")
+//                .gender("female")
+//                .email(email)
+//                .status("active").build();
         //arrange
-        String email = UUID.randomUUID() + "@gmail.com";
-        CreateUsersReqBody cuReqBody=CreateUsersReqBody.builder()
-                .name("Rani Ramakrishna")
-                .gender("female")
-                .email(email)
-                .status("active").build();
+        CreateUsersReqBody cuReqBody = new CreateUsersReqBody.Builder().gender("female").build();
         //act
         ResponseOfCreateUser createUserResponse = userClient.createUsers(cuReqBody);
         //assert
-        //⌥⏎ to static import
         createUserResponse.assertUserInfo(cuReqBody);
     }
 
     @Test
     public void shouldCreateMaleUser(){
         //arrange
-        String email = UUID.randomUUID() + "@gmail.com";
-        CreateUsersReqBody cuReqBody=CreateUsersReqBody.builder().name("Rup Ramakrishna")
-                .gender("male").email(email)
-                .status("active").build();
+        CreateUsersReqBody cuReqBody = new CreateUsersReqBody.Builder().gender("male").build();
         //act
         ResponseOfCreateUser createUserResponse = userClient.createUsers(cuReqBody);
         //assert
-        //⌥⏎ to static import
         createUserResponse.assertUserInfo(cuReqBody);
     }
 }

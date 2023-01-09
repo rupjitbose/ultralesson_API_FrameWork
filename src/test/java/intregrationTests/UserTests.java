@@ -20,10 +20,7 @@ public class UserTests {
     @Test
     public void shouldCreateAndGetUser(){
         //arrange
-        String email = UUID.randomUUID() + "@gmail.com";
-        CreateUsersReqBody cuReqBody=CreateUsersReqBody.builder().name("Rup Ramakrishna")
-                .gender("male").email(email)
-                .status("active").build();
+        CreateUsersReqBody cuReqBody = new CreateUsersReqBody.Builder().build();
         //act
         int id= userClient.createUsers(cuReqBody).getData().getId();
         //assert

@@ -20,9 +20,10 @@ public class CreateUserNegativeTests {
     public void shouldNotAllowToCreateUserWithInvalidEmail(){
         //arrange
 
-        CreateUsersReqBody cuReqBody=CreateUsersReqBody.builder().name("Rup Ramakrishna")
-                .gender("male").email("rup.ramakrishnaabcd112333.com")
-                .status("active").build();
+//        CreateUsersReqBody cuReqBody=CreateUsersReqBody.builder().name("Rup Ramakrishna")
+//                .gender("male").email("rup.ramakrishnaabcd112333.com")
+//                .status("active").build();
+        CreateUsersReqBody cuReqBody = new CreateUsersReqBody.Builder().email("abcddasdas").build();
         //act
         CreateUserErrorResponse errorResponse=userClient.createErrorResponse(cuReqBody);
 
@@ -35,9 +36,7 @@ public class CreateUserNegativeTests {
     public void shouldNotAllowToCreateUserWithBlankStatusAndGender(){
         //arrange
 
-        CreateUsersReqBody cuReqBody=CreateUsersReqBody.builder().name("Rup Ramakrishna")
-                .gender("").email("rup.ramakris@hnaabcd112333.com")
-                .status("").build();
+        CreateUsersReqBody cuReqBody = new CreateUsersReqBody.Builder().gender("").status("").build();
         //act
         CreateUserErrorResponse errorResponse=userClient.createErrorResponse(cuReqBody);
 
